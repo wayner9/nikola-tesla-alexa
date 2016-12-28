@@ -118,3 +118,7 @@ ClimateStop Stop the air conditioner
 ClimateStop Stop the A.C.
 UnlockCarTime Unlock my car until {lock_time}
 UnlockCarTime Unlock the car till {lock_time}
+GetBirthday When is your birthday
+GetBirthday When is Elons birthday
+GetBirthday When is Elon Musks birthday
+GetBirthday When were you born
