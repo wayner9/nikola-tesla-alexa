@@ -24,8 +24,8 @@ I have tried this out on Windows and on a Raspberry Pi running Raspbian- Jessie.
 
 The following need to be entered as arguments when running the program because they contain
 private information:
-* TESLA_USER: Tesla.com username for the Tesla automobile to be monitored and managed;
-* TESLA_PASSWORD: Tesla.com password;
+* Tesla.com username for the Tesla automobile to be monitored and managed;
+* Tesla.com password;
 
 The function DataDump() creates a file named tesladata.txt, which contains a
 complete dump of the data provided by the Tesla API.  An example of this file is
@@ -42,6 +42,9 @@ Here are the most important files and what they do:
 
 ## Setup and Installation
 Prereqs - you should have Python installed an running on your PC.  I am using Python 2.7.
+It also helps to have some knowledge of Python but that should be required.
+For more background info I would suggest that you look at the following tutorial on flask-ask:
+https://developer.amazon.com/blogs/post/Tx14R0IYYGH3SKT/Flask-Ask-A-New-Python-Framework-for-Rapid-Alexa-Skills-Kit-Development
 
 Sign up for an Amazon Developer Account - you can likely use your existing Amazon credentials.
 
@@ -70,7 +73,7 @@ On the next page copy everything from the intents.txt file and paste into the in
 Copy everything from the utterances.txt file and paste into the Sample Utterances. Click next.
 On the next screen for Endpoint click on HTTPS.  Pick your region.  In the box enter the https
 URL from ngrok which should be the last Forwarding line.  For example if the line reads:
-"Forwarding    https://ab12cd34.ngrok.io --> localost:5000" then enter this in the box.
+'Forwarding    https://ab12cd34.ngrok.io --> localost:5000' then enter this in the box.
 Press Save or Next and you should now be working.
 
 Ask Alexa for some info as in "Alexa ask Nikola what is the status of my car".
