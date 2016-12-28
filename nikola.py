@@ -23,6 +23,7 @@ from dateutil.parser import parse
 from isodate import parse_time
 import logging #WK added this
 import sys  #WK added this
+from geopy.distance import vincenty  #WK added this
 
 # Alexa Skill credentials are stored separately as an environment variable
 #APP_ID = os.environ['APP_ID'] #WK commented this out
@@ -202,9 +203,10 @@ def FetchTemps(scale):
     outside_temp = 0.0
     inside_temp= ConvertTemp(data['inside_temp'], scale)
     outside_temp= ConvertTemp(data['outside_temp'], scale)
-    if not(type(inside_temp) is int):
+    print inside_temp, type (inside_temp)
+    if not(type(inside_temp) is float):
         inside_temp=-100
-    if not(type(outside_temp) is int):
+    if not(type(outside_temp) is float):
         outside_temp=-100
     return inside_temp, outside_temp
 
@@ -324,7 +326,7 @@ def GetPluggedIn():
     data = vehicle.data_request('charge_state')
     if data['charge_port_door_open']:
         text = "Your car is plugged in, "
-        if (data['charge_state'] == "Charging"):
+        if (data['charging_state'] == "Charging"):
             text += "and it's charging."
         else:
             text += "but it's not charging."
@@ -382,7 +384,15 @@ def GetStatusQuick():
 def GetBirthday():   
     text="The birthday of our dear leader, Elon Musk, is June 28"
     return statement(text)
-    
+
+@ask.intent('MotherShipDistance')
+def MotherShipDistance():
+    home=(latitude,longitude)
+    fremont_ca = (37.5483, -121.9886)
+    distance=int(vincenty(fremont_ca, home).miles)
+    text="Your car is currently %d %s from the Tesla factory in Fremont California" % (distance*distscale,distunits)
+    return statement(text)
+        
 # INTENTS THAT SEND COMMANDS TO THE CAR
 
 # "Unlock my car for 10 minutes."
