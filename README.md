@@ -19,6 +19,8 @@ and return a text response to be spoken on Alexa devices such as the Echo and Do
 This is a fork of mekolowich's Alexa skill.  One of the main differences is that this
 is designed to be run on a PC in your home or wherever rather than in the cloud.
 We will then use a program called ngrok to open a tunnel to your PC.
+The other difference is that I have improved support for Canada and reporting of
+distances in km.
 
 I have tried this out on Windows and on a Raspberry Pi running Raspbian- Jessie.
 
