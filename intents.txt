@@ -16,6 +16,8 @@
 	{"intent": "ClimateStart"},
 	{"intent": "DataPrint"},
 	{"intent": "DataDump"},
+	{"intent": "GetBirthday"},    
+    	{"intent": "MotherShipDistance"},
 	{"intent": "UnlockCarTime","slots": [{"name": "lock_time","type": "AMAZON.TIME"}]},
 	{"intent": "ChargeSet","slots": [{"name": "limit","type": "AMAZON.NUMBER"}]},
 	{"intent": "UnlockCarDuration","slots": [{"name": "unlock_duration","type": "AMAZON.DURATION"}]}
