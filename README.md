@@ -3,7 +3,7 @@
 Nikola is a python application for monitoring and managing
 a Tesla connected automobile from an Amazon Alexa natural language device
 
-Authors: Michael Kolowich, Andrew Payne;
+Authors: Michael Kolowich, Andrew Payne, Wayne Kozun;
 October/November, 2016
 
 Requires:
@@ -22,11 +22,10 @@ We have, however, included two files -- intents.txt and utterances.txt -- that
 would allow an Alexa intent to be deployed easily by anyone who sets up an
 Amazon developer account.
 
-The following need to be entered as Environment Variables because they contain
+The following need to be entered as arguments when running the program because they contain
 private information:
 * TESLA_USER: Tesla.com username for the Tesla automobile to be monitored and managed;
 * TESLA_PASSWORD: Tesla.com password;
-* APP_ID: App ID for the Alexa app that you create.
 
 In addition, the application needs these additional environment variables:
 * CHARGE_SPEED: Average charging speed for the location where charging most often occurs (in miles added per hour)
@@ -38,7 +37,7 @@ for privacy reasons.)
 
 ## Key Files in this repository
 Here are the most important files and what they do:
-* <b>application.py</b> is the main Python program to handle the incoming Alexa intents, query the Tesla API, issue commands through the API, formulate and return responses to be spoken by an Alexa device;
+* <b>nikola.py</b> is the main Python program to handle the incoming Alexa intents, query the Tesla API, issue commands through the API, formulate and return responses to be spoken by an Alexa device;
 * <b>teslajson.py</b> is the third-party application, written by Greg Glockner, that actually handles the communications to and from the Tesla through the API;
 * <b>intents.txt</b> is the most current schema of intents, in JSON format, that defines the inquiries and commands that Alexa can pass to Nikola.  This can be copied and pasted into the "Intent Schema" section of the "Interaction Model" tab for a Nikola Skill that can be defined and managed in the Amazon Developer Console.
 * <b>utterances</b> is a list of "Sample Utterances" that Alexa uses to decide which intent to send to the application.  Like the Intent Schema, this can be copied and pasted into the "Sample Utterances" section of the Interaction Model for an Alexa Skill;
