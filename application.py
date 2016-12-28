@@ -33,7 +33,7 @@ ask = Ask(application, '/')
 # Tesla Username and Password are stored separately as environment variables
 TESLA_USER = os.environ['TESLA_USER']
 TESLA_PASSWORD = os.environ['TESLA_PASSWORD']
-tesla_connection = teslajson.Connection("TESLA_USER", "TESLA_PASSWORD")
+tesla_connection = teslajson.Connection(TESLA_USER, TESLA_PASSWORD)
 vehicle = tesla_connection.vehicles[0]
 
 #Global State Variables
@@ -103,6 +103,19 @@ states = {
         'WI': 'Wisconsin',
         'WV': 'West Virginia',
         'WY': 'Wyoming'
+        'AB': 'Alberta',
+        'BC': 'British Columbia',
+        'MB': 'Manitoba',
+        'NB': 'New Brunswick',
+        'NL': 'Newfoundland and Labrador',
+        'NT': 'Northwest Territories',
+        'NS': 'Nova Scotia',
+        'NU': 'Nunavut',
+        'ON': 'Ontario',
+        'PE': 'Prince Edward Island',
+        'QC': 'Quebec',
+        'SK': 'Saskatchewan',
+        'YT': 'Yukon'        
 }
 
 def IdentifyStateName(abbr):
