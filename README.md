@@ -16,7 +16,7 @@ The Python program nikola.py contains the intent handlers required to
 accept an Alexa Intent, query and post to the Tesla API for a specific car,
 and return a text response to be spoken on Alexa devices such as the Echo and Dot.
 
-This is a fork of melolowich's Alexa skill.  One of the main differences is that this
+This is a fork of mekolowich's Alexa skill.  One of the main differences is that this
 is designed to be run on a PC in your home or wherever rather than in the cloud.
 We will then use a program called ngrok to open a tunnel to your PC.
 
