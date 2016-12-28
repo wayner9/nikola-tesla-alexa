@@ -122,3 +122,5 @@ GetBirthday When is your birthday
 GetBirthday When is Elons birthday
 GetBirthday When is Elon Musks birthday
 GetBirthday When were you born
+MotherShipDistance How far is my car from the mother ship
+MotherShipDistance How far are we from the mother ship
