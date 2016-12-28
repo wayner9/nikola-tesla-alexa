@@ -59,7 +59,8 @@ authentication method you can take a token that you have and paste it into line 
 teslajson.py file.  That should keep using that token until it expires - but you will have to deal
 with replacing it upon retirement.
 
-Assuming it is working you now have your file waiting for commands on port 5000.
+Assuming the python program is working you now have your file waiting for commands
+on port 5000.
 
 The next step is to setup ngrok.  Download and run the version of ngrok for your
 PC - on windows you will need the command 'ngrok.exe http 5000' and on Linux it is 
