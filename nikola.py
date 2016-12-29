@@ -367,7 +367,7 @@ def GetStatusQuick():
     vehicle.wake_up()
     data_vehicle = vehicle.data_request('vehicle_state')
     data_charge = vehicle.data_request ('charge_state')
-    FetchTemps('tempunits')
+    FetchTemps(tempunits)
     text = "Charge is %d percent. " % data_charge['battery_level']
     text += "Rated range is %d %s, " % (data_charge['battery_range']*distscale,distunits)
     text += "estimated %d %s. " % (data_charge['est_battery_range']*distscale,distunits)
