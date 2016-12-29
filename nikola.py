@@ -299,9 +299,12 @@ def GetRange():
 @ask.intent('GetTemperatures')
 def GetTemperatures():
     FetchTemps(tempunits)
-    text = "Your car is %d degrees on the outside, " % outside_temp
-    text += "and %d degrees on the inside.  In " % inside_temp
-    text += "%s of course" % tempunits
+    if outside_temp is None:
+        text = "I can't get the temperatures right now.  Try turning on the climate and trying again"
+    else:
+        text = "Your car is %d degrees on the outside, " % outside_temp
+        text += "and %d degrees on the inside.  In " % inside_temp
+        text += "%s of course" % tempunits
     return statement(text)
 
 # "Is my car locked?"
@@ -351,9 +354,10 @@ def GetStatus():
     else:
        text += ". "
        text += SpeakChargeTime()
-    text += "At the moment, your car is %d degrees " % outside_temp
-    text += "%s outside " %tempunits
-    text += "and %d degrees on the inside. " % inside_temp
+    if not(outside_temp is None):
+        text += "At the moment, your car is %d degrees " % outside_temp
+        text += "%s outside " %tempunits
+        text += "and %d degrees on the inside. " % inside_temp
     text += "You have put %.1f %s on the car." % (data_vehicle['odometer']*distscale,distunits)
     return statement(text)
 
@@ -368,11 +372,12 @@ def GetStatusQuick():
     text += "Rated range is %d %s, " % (data_charge['battery_range']*distscale,distunits)
     text += "estimated %d %s. " % (data_charge['est_battery_range']*distscale,distunits)
     text += "locked and " if data_vehicle['locked'] else "unlocked and "
-    text += "not " if not(data_charge['charging_state']) else ""
+    text += "not " if not(data_charge['charging_state']=='Charging') else ""
     text += "charging. "
-    text += "Outside temp %d degrees " % outside_temp
-    text += "%s " % tempunits
-    text += "and inside %d degrees. " % inside_temp
+    if not(outside_temp is None):
+        text += "Outside temp %d degrees " % outside_temp
+        text += "%s " % tempunits
+        text += "and inside %d degrees. " % inside_temp
     text += "Odometer %d %s." % (data_vehicle['odometer']*distscale,distunits)
     return statement(text)
 
@@ -563,19 +568,7 @@ def ClimateStart():
     if data['is_climate_on']:
         return statement("Your climate system is already running.  No need for further action.")
     else:
-        inside_temp = ConvertTemp(data['inside_temp'], tempunits)
-        set_temp = ConvertTemp(data['driver_temp_setting'], tempunits)
-        if abs(set_temp - inside_temp) < 5:
-            text = "The inside temperature of %s degrees is already pretty close to ideal," % int(inside_temp)
-            text += "so I didn't turn the climate system on, in the interest of saving energy."
-        else:
-            vehicle.command('auto_conditioning_start')
-            if set_temp > inside_temp:
-                heat_cool = "heating"
-            else:
-                heat_cool = "cooling"
-            text = "OK, I have started %s your car " % heat_cool
-            text += "to %s degrees." % int(set_temp)
+        text = "OK, I have started your car's climate system."
     return statement(text)
 
 # "Stop warming my car"
