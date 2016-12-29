@@ -201,8 +201,12 @@ def FetchTemps(scale):
     data = vehicle.data_request('climate_state')
     inside_temp = 0.0
     outside_temp = 0.0
-    inside_temp= ConvertTemp(data['inside_temp'], scale)
-    outside_temp= ConvertTemp(data['outside_temp'], scale)
+    inside_temp= data['inside_temp']
+    outside_temp= data['outside_temp']
+    if not (inside_temp is None):
+        inside_temp= ConvertTemp(data['inside_temp'], scale)
+    if not (outside_temp is None):
+        outside_temp= ConvertTemp(data['outside_temp'], scale)
     return inside_temp, outside_temp
 
 # Function to convert decimal hours to hours and minutes in spoken text
@@ -568,6 +572,7 @@ def ClimateStart():
     if data['is_climate_on']:
         return statement("Your climate system is already running.  No need for further action.")
     else:
+        vehicle.command('auto_conditioning_start')
         text = "OK, I have started your car's climate system."
     return statement(text)
 
