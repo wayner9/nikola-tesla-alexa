@@ -352,7 +352,7 @@ def GetStatus():
     text += "Your car's EPA rated range is %d %s, " % (data_charge['battery_range']*distscale,distunits)
     text += "but based on your recent driving patterns, your estimated range is %d %s. " % (data_charge['est_battery_range']*distscale,distunits)
     text += "It's currently "
-    text += "locked"
+    text += "locked" if data_vehicle['locked'] else "unlocked"
     if not(data_charge['charging_state'] == "Charging"):
        text += " and it's not charging. "
     else:
