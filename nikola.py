@@ -203,16 +203,13 @@ def FetchTemps(scale):
     outside_temp = 0.0
     inside_temp= ConvertTemp(data['inside_temp'], scale)
     outside_temp= ConvertTemp(data['outside_temp'], scale)
-    print inside_temp, type (inside_temp)
-    if not(type(inside_temp) is float):
-        inside_temp=-100
-    if not(type(outside_temp) is float):
-        outside_temp=-100
     return inside_temp, outside_temp
 
 # Function to convert decimal hours to hours and minutes in spoken text
 # Note: This is also used with seconds by dividing DecimalHours by 3600 in the function call
 def SpeakDurationHM(DecimalHours):
+    print "============================"
+    print (DecimalHours)
     int_hrs = int(DecimalHours)
     int_mins = int((DecimalHours - float(int_hrs)) * 60)
     if int_hrs == 0:
@@ -480,7 +477,7 @@ def UnlockCarTime(lock_time):
         vehicle.command('door_unlock')
         unlock_timer_state = "On"
         unlock_end_time = end_time
-        text = "I've unlocked your car, and it will stay unlocked for %s, until %s." % (SpeakDurationHM(unlock_duration.seconds/3600), SpeakTime(end_time))
+        text = "I've unlocked your car, and it will stay unlocked for %s, until %s." % (SpeakDurationHM(float(unlock_duration.seconds)/3600), SpeakTime(end_time))
         data = vehicle.data_request('vehicle_state')
         unlock_timer = Timer(unlock_duration.seconds, LockCarAction) # Lock the car back up after 'minutes'
         unlock_timer.start()
@@ -508,7 +505,7 @@ def ChargeStop():
     else:
         text = "Sorry, but you car isn't charging, so I can't stop it. "
     text += "Your current charge level is %d percent, " % data['battery_level']
-    text += "and your rated range is %d miles." % data['battery_range']
+    text += "and your rated range is %d %s." % (data['battery_range']*distscale,distunits)
     return statement(text)
 
 # "Start charging my car."
@@ -520,7 +517,7 @@ def ChargeStart():
         text = "Your car is already charging. "
     else:
         vehicle.command('charge_start')
-        text = "OK.  I've started charging your car."
+        text = "OK.  I've started charging your car. "
     text += "I'll stop when it reaches %d percent charge." %data['charge_limit_soc']
     return statement(text)
 
