@@ -3,6 +3,7 @@
 	{"intent": "GetOdometer"},
 	{"intent": "GetRange"},
 	{"intent": "GetPluggedIn"},
+	{"intent": "GetTemperatures"},
 	{"intent": "GetLocked"},    
 	{"intent": "GetLocation"},
 	{"intent": "GetStatus"},
